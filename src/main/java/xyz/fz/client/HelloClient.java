@@ -4,10 +4,12 @@ import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.context.annotation.Primary;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Map;
+
 @Primary
 @FeignClient(value = "EUREKA-HELLO-PROVIDER-CLIENT", fallback = HelloFallback.class)
 public interface HelloClient {
 
     @RequestMapping("/hello/time")
-    String time();
+    String time(Map params);
 }

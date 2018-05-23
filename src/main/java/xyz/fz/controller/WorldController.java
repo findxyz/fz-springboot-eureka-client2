@@ -1,9 +1,12 @@
 package xyz.fz.controller;
 
+import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import xyz.fz.client.HelloClient;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/world")
@@ -17,7 +20,10 @@ public class WorldController {
     }
 
     @RequestMapping("/timeFromHello")
+    @SuppressWarnings("unchecked")
     public String timeFromHello() {
-        return helloClient.time();
+        Map params = Maps.newHashMap();
+        params.put("hello", "world");
+        return helloClient.time(params);
     }
 }
